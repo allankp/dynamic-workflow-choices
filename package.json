@@ -1,6 +1,6 @@
 {
   "name": "dynamic-workflow-choices",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitHub Action to dynamically update workflow_dispatch input choices",
   "main": "dist/index.js",
   "scripts": {

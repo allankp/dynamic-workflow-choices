@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.0](https://github.com/allankp/dynamic-workflow-choices/compare/v1.0.0...v1.1.0) (2026-02-05)
+
+
+### Features
+
+* Add test workflows ([7cb5770](https://github.com/allankp/dynamic-workflow-choices/commit/7cb5770aaddc42a1f122fb810c647eb1b26f69b7))
+* Add test workflows ([41f191b](https://github.com/allankp/dynamic-workflow-choices/commit/41f191b61356292f3ccb926d91aa829363650281))
+
+
+### Bug Fixes
+
+* add contents write permission to test workflows ([920eb04](https://github.com/allankp/dynamic-workflow-choices/commit/920eb047bdcc49298ec799604ce88eed9696a9f1))
+* add contents write permission to test workflows ([7376f72](https://github.com/allankp/dynamic-workflow-choices/commit/7376f727e2b5b624cdcbdded6d4d372145470a57))
+* env var parsing ([ef3d2cf](https://github.com/allankp/dynamic-workflow-choices/commit/ef3d2cf09e1963a012c68b0fe8160c9a8c51fecc))
+* env var parsing ([c489f46](https://github.com/allankp/dynamic-workflow-choices/commit/c489f4681caacbbda0de3ba2fb816a9f0aaff49e))
+* handle YAML documents with parsing errors using regex fallback ([3321111](https://github.com/allankp/dynamic-workflow-choices/commit/33211116bb265051541bd49fb8e8b1e76cb4fe92))
+* handle YAML documents with parsing errors using regex fallback ([15de198](https://github.com/allankp/dynamic-workflow-choices/commit/15de198929ce212b35c640d749a6945edd981372))
+* references to old repo name ([4a4ce40](https://github.com/allankp/dynamic-workflow-choices/commit/4a4ce4086957e2a390e044b9321a9a426abdf032))
+* references to old repo name ([d484991](https://github.com/allankp/dynamic-workflow-choices/commit/d4849915d46985581b5a6374b50af0769af5e0ab))
+
 ## 1.0.0 (2026-02-05)
 
 
