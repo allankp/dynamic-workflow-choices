@@ -1,0 +1,26 @@
+name: Test Action - Update Choice
+on:
+  workflow_dispatch:
+
+jobs:
+  test-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Update 'staging' to 'stage'
+        uses: allankp/dynamic-choices@main
+        with:
+          action: update
+          input-name: environment
+          workflows: test-target.yml
+          choice-value: staging
+          new-choice-value: stage
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'test: rename staging to stage'
+
+      - name: Verify change
+        run: |
+          echo "Choice 'staging' should now be 'stage' in test-target.yml"
+          cat .github/workflows/test-target.yml
