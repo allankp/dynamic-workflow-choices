@@ -1,0 +1,25 @@
+name: Test Action - Delete Choice
+on:
+  workflow_dispatch:
+
+jobs:
+  test-delete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Delete 'testing' choice
+        uses: allankp/dynamic-choices@main
+        with:
+          action: delete
+          input-name: environment
+          workflows: test-target.yml
+          choice-value: testing
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'test: delete testing environment choice'
+
+      - name: Verify change
+        run: |
+          echo "Choice 'testing' should now be removed from test-target.yml"
+          cat .github/workflows/test-target.yml

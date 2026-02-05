@@ -1,0 +1,23 @@
+# Test Target Workflow
+# This workflow is used as a target for testing the dynamic-choices action.
+# The action will modify the 'environment' input choices below.
+
+name: Test Target
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment for deployment'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  show-selection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show selected environment
+        run: echo "Selected environment: ${{ inputs.environment }}"

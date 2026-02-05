@@ -1,0 +1,112 @@
+name: Test Action - Full Integration
+on:
+  workflow_dispatch:
+  schedule:
+    # Run weekly on Sundays at midnight
+    - cron: '0 0 * * 0'
+
+permissions:
+  contents: write
+
+jobs:
+  test-add:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Add 'qa' choice
+        id: add
+        uses: allankp/dynamic-choices@main
+        with:
+          action: add
+          input-name: environment
+          workflows: test-target.yml
+          choice-value: qa
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'test: add qa environment'
+
+      - name: Check add result
+        run: |
+          echo "Updated workflows: ${{ steps.add.outputs.updated-workflows }}"
+          echo "Changes made: ${{ steps.add.outputs.changes-made }}"
+
+  test-update:
+    needs: test-add
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main  # Get latest changes from add step
+
+      - name: Update 'qa' to 'quality-assurance'
+        id: update
+        uses: allankp/dynamic-choices@main
+        with:
+          action: update
+          input-name: environment
+          workflows: test-target.yml
+          choice-value: qa
+          new-choice-value: quality-assurance
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'test: rename qa to quality-assurance'
+
+      - name: Check update result
+        run: |
+          echo "Updated workflows: ${{ steps.update.outputs.updated-workflows }}"
+          echo "Changes made: ${{ steps.update.outputs.changes-made }}"
+
+  test-delete:
+    needs: test-update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main  # Get latest changes from update step
+
+      - name: Delete 'quality-assurance' choice
+        id: delete
+        uses: allankp/dynamic-choices@main
+        with:
+          action: delete
+          input-name: environment
+          workflows: test-target.yml
+          choice-value: quality-assurance
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'test: remove quality-assurance environment'
+
+      - name: Check delete result
+        run: |
+          echo "Updated workflows: ${{ steps.delete.outputs.updated-workflows }}"
+          echo "Changes made: ${{ steps.delete.outputs.changes-made }}"
+
+  verify:
+    needs: test-delete
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+
+      - name: Verify final state
+        run: |
+          echo "Final state of test-target.yml:"
+          cat .github/workflows/test-target.yml
+          
+          echo ""
+          echo "Checking that original options are preserved..."
+          grep -q "development" .github/workflows/test-target.yml && echo "✓ development exists"
+          grep -q "staging" .github/workflows/test-target.yml && echo "✓ staging exists"
+          grep -q "production" .github/workflows/test-target.yml && echo "✓ production exists"
+          
+          echo ""
+          echo "Checking that test option was removed..."
+          if grep -q "quality-assurance" .github/workflows/test-target.yml; then
+            echo "✗ quality-assurance still exists (should have been deleted)"
+            exit 1
+          else
+            echo "✓ quality-assurance was successfully removed"
+          fi
