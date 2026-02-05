@@ -19,7 +19,7 @@ jobs:
           input-name: environment
           workflows: test-target.yml
           choice-value: testing
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_WORKFLOW_TOKEN }}
           commit-message: 'test: delete testing environment choice'
 
       - name: Verify change

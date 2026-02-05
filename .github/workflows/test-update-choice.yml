@@ -20,7 +20,7 @@ jobs:
           workflows: test-target.yml
           choice-value: staging
           new-choice-value: stage
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_WORKFLOW_TOKEN }}
           commit-message: 'test: rename staging to stage'
 
       - name: Verify change

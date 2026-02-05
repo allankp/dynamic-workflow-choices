@@ -23,7 +23,7 @@ jobs:
           input-name: environment
           workflows: test-target.yml
           choice-value: qa
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_WORKFLOW_TOKEN }}
           commit-message: 'test: add qa environment'
 
       - name: Check add result
@@ -49,7 +49,7 @@ jobs:
           workflows: test-target.yml
           choice-value: qa
           new-choice-value: quality-assurance
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_WORKFLOW_TOKEN }}
           commit-message: 'test: rename qa to quality-assurance'
 
       - name: Check update result
@@ -74,7 +74,7 @@ jobs:
           input-name: environment
           workflows: test-target.yml
           choice-value: quality-assurance
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_WORKFLOW_TOKEN }}
           commit-message: 'test: remove quality-assurance environment'
 
       - name: Check delete result
