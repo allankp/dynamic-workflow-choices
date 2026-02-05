@@ -2,6 +2,9 @@ name: Test Action - Update Choice
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   test-update:
     runs-on: ubuntu-latest

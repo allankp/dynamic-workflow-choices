@@ -2,6 +2,9 @@ name: Test Action - Delete Choice
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   test-delete:
     runs-on: ubuntu-latest
