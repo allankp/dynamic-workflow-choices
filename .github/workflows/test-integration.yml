@@ -17,7 +17,7 @@ jobs:
 
       - name: Add 'qa' choice
         id: add
-        uses: allankp/dynamic-choices@main
+        uses: allankp/dynamic-workflow-choices@main
         with:
           action: add
           input-name: environment
@@ -42,7 +42,7 @@ jobs:
 
       - name: Update 'qa' to 'quality-assurance'
         id: update
-        uses: allankp/dynamic-choices@main
+        uses: allankp/dynamic-workflow-choices@main
         with:
           action: update
           input-name: environment
@@ -68,7 +68,7 @@ jobs:
 
       - name: Delete 'quality-assurance' choice
         id: delete
-        uses: allankp/dynamic-choices@main
+        uses: allankp/dynamic-workflow-choices@main
         with:
           action: delete
           input-name: environment
