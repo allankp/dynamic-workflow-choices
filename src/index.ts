@@ -33,9 +33,8 @@ async function run(): Promise<void> {
       throw new Error(validation.error);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const octokit = github.getOctokit(token);
-    const context = github.context;
+    const { owner, repo } = github.context.repo;
 
     core.info(`Action: ${action}`);
     core.info(`Input name: ${inputName}`);
@@ -45,11 +44,10 @@ async function run(): Promise<void> {
       core.info(`New choice value: ${newChoiceValue}`);
     }
 
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     const result = await updateWorkflowChoices({
       octokit,
-      owner: context.repo.owner,
-      repo: context.repo.repo,
+      owner,
+      repo,
       action,
       inputName,
       workflows,
@@ -58,7 +56,6 @@ async function run(): Promise<void> {
       commitMessage,
       branch,
     });
-    /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 
     core.setOutput('updated-workflows', result.updatedWorkflows.join(','));
     core.setOutput('changes-made', result.changesMade.toString());

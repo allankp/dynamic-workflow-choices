@@ -30146,13 +30146,14 @@ async function updateWorkflowChoices(options) {
         const workflowPath = `.github/workflows/${workflowFile}`;
         try {
             // Get current workflow file content
-            const { data: fileData } = await octokit.rest.repos.getContent({
+            const response = await octokit.rest.repos.getContent({
                 owner,
                 repo,
                 path: workflowPath,
                 ref: branch,
             });
-            if (!('content' in fileData)) {
+            const fileData = response.data;
+            if (!fileData.content) {
                 core.warning(`${workflowFile} is not a file, skipping`);
                 continue;
             }
