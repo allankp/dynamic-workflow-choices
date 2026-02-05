@@ -30137,6 +30137,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.updateWorkflowChoices = updateWorkflowChoices;
 exports.modifyWorkflowContent = modifyWorkflowContent;
+exports.modifyWithFallback = modifyWithFallback;
+exports.extractOptionsWithRegex = extractOptionsWithRegex;
+exports.replaceOptionsWithRegex = replaceOptionsWithRegex;
 const core = __importStar(__nccwpck_require__(7484));
 const yaml = __importStar(__nccwpck_require__(8815));
 async function updateWorkflowChoices(options) {

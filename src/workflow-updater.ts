@@ -219,7 +219,7 @@ export function modifyWorkflowContent(
  * Fallback function for when YAML parsing has errors.
  * Extracts current options using regex, applies the action, then uses regex replacement.
  */
-function modifyWithFallback(
+export function modifyWithFallback(
   content: string,
   options: Pick<UpdateOptions, 'action' | 'inputName' | 'choiceValue' | 'newChoiceValue'>
 ): string {
@@ -288,7 +288,7 @@ function modifyWithFallback(
 /**
  * Extract options for a given input name using regex.
  */
-function extractOptionsWithRegex(content: string, inputName: string): string[] {
+export function extractOptionsWithRegex(content: string, inputName: string): string[] {
   const lines = content.split('\n');
   const options: string[] = [];
   let inTargetInput = false;
@@ -343,7 +343,11 @@ function extractOptionsWithRegex(content: string, inputName: string): string[] {
  * Fallback function to replace options using regex when YAML parsing has issues.
  * This preserves the original formatting better in edge cases.
  */
-function replaceOptionsWithRegex(content: string, inputName: string, newOptions: string[]): string {
+export function replaceOptionsWithRegex(
+  content: string,
+  inputName: string,
+  newOptions: string[]
+): string {
   // Find the input block and replace its options
   const lines = content.split('\n');
   const result: string[] = [];
