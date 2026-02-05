@@ -5,6 +5,24 @@
 
 ### ⚠ BREAKING CHANGES
 
+* First commit
+
+### Features
+
+* First commit ([623e32c](https://github.com/allankp/dynamic-choices/commit/623e32c42c70e9c87b9533f9317c812784335b49))
+
+
+### Bug Fixes
+
+* bump action and core ([d90b789](https://github.com/allankp/dynamic-choices/commit/d90b789ad45332a3d979f07a2e348381ab94f70a))
+* bump action and core ([c70bb03](https://github.com/allankp/dynamic-choices/commit/c70bb036d6d4a621013bd8880e633f4fd933409e))
+* bump action and core ([c1ae4e1](https://github.com/allankp/dynamic-choices/commit/c1ae4e11e42450476729f60a0d3cac5366cad3d7))
+
+## 1.0.0 (2026-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
 * First release
 
 ### Features
