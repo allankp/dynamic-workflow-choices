@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add environment choice
-        uses: allankp/dynamic-workflow-choices@v1
+        uses: allankp/dynamic-workflow-choices@v0.2.2 # x-release-please-version
         with:
           action: add
           input-name: environment
@@ -44,7 +44,7 @@ jobs:
 
 ```yaml
 - name: Delete old environment
-  uses: allankp/dynamic-workflow-choices@v1
+  uses: allankp/dynamic-workflow-choices@v0.2.2 # x-release-please-version
   with:
     action: delete
     input-name: environment
@@ -57,7 +57,7 @@ jobs:
 
 ```yaml
 - name: Rename environment
-  uses: allankp/dynamic-workflow-choices@v1
+  uses: allankp/dynamic-workflow-choices@v0.2.2 # x-release-please-version
   with:
     action: update
     input-name: environment
