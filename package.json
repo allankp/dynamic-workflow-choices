@@ -48,7 +48,7 @@
     "eslint": "^9.39.0",
     "globals": "^17.3.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.3.2",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3",
     "typescript-eslint": "^8.54.0",
