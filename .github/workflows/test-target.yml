@@ -14,6 +14,7 @@ on:
           - development
           - staging
           - production
+          - qa
 
 jobs:
   show-selection:
